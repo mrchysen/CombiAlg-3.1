@@ -1,11 +1,11 @@
 ﻿using Logic;
 
-var g = GraphReader.ReadGraph("graph3.txt");
+var g = GraphReader.ReadGraph("graph2.txt");
 
-#region Компонент связности
+#region Компонент связности 
 bool[] used = new bool[g.Count];
 int i = 0;
-while (used.Any(el => !el))
+while (used.Any(el => !el)) // О(N*(N+M))
 {
     var v = -1;
 
@@ -25,7 +25,7 @@ while (used.Any(el => !el))
 Console.WriteLine("Компонент связности: " + i);
 #endregion
 
-#region Достижимость
+#region Достижимость O(N + M)
 var u = 0;
 used = GraphAlgorithms.BFS(g, u);
 Console.WriteLine($"Из вершины {u+1} достижимы: ");
@@ -36,7 +36,7 @@ for (int k = 0; k < g.Count; k++)
 }
 #endregion
 
-#region Отыскание остовного дерева
+#region Отыскание остовного дерева O(N + M)
 u = 0;
 (used, var Y) = GraphAlgorithms.BFSModified(g, u);
 
